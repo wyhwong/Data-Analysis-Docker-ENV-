@@ -1,14 +1,24 @@
 # Data-Analysis-Template
 
-This template standardized the basic docker environment of customized data analysis environment. The makefile commands are listed in the following:
+## Description of Repo
+This template standardized the basic docker environment of customized data analysis environment with Python. The makefile commands are listed in the following:
+
+---
+
+## Data Analysis with Python
 ```bash
 # To build image for containers
 make build
 
 # To start main
 make start
+```
 
-# To run Jupyter notebook server after main
+---
+
+## Data Visualization with Jupyter Notebook Server
+```bash
+# To run Jupyter notebook server
 make jupyter_up
 # To specify a port for the notebook
 make port=<port> jupyter_up
