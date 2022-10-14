@@ -29,3 +29,10 @@ make jupyter_down
 # To stop and remove all containers
 make clean
 ```
+
+---
+
+## Authors
+[@wyhwong](https://github.com/wyhwong)
+
+---
