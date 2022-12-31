@@ -12,6 +12,9 @@ make build
 
 # To start main
 make start
+
+# To develop
+make develop
 ```
 
 ---
