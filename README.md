@@ -1,5 +1,7 @@
 # Data-Analysis-Template
 
+This repository aims to provide a docker environment for data analysis with Python/C/C++.
+
 ---
 
 ## Description and Usage
