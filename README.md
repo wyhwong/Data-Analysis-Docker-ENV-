@@ -1,11 +1,11 @@
 # Data-Analysis-Template
 
-## Description of Repo
-This template standardized the basic docker environment of customized data analysis environment with Python. The makefile commands are listed in the following:
-
 ---
 
-## Data Analysis with Python
+## Description and Usage
+
+This repository standardized a basic docker environment of customized data analysis needs with Python/C/C++. The makefile commands are listed in the following:
+
 ```bash
 # To build image for containers
 make build
@@ -15,6 +15,7 @@ make start
 
 # To develop
 make develop
+docker exec -it data_analysis bash
 ```
 
 ---
