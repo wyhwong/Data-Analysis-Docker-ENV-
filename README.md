@@ -17,7 +17,6 @@ make start
 
 # To develop
 make develop
-docker exec -it data_analysis bash
 ```
 
 ---

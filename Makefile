@@ -7,6 +7,7 @@ build:
 
 develop:
 	docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d data_analysis
+	docker exec -it data_analysis bash
 
 start:
 	docker-compose up data_analysis
