@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-import logging
+from utils.common import getLogger
+
+LOGGER = getLogger("Main")
 
 def main():
-    logging.info("Testing! Hello world.")
+    LOGGER.info("Testing! Hello world.")
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
     main()

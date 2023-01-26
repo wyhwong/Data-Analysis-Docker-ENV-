@@ -1,19 +1,20 @@
 version: '3.8'
 services:
-  data_analysis:
-    container_name: data_analysis
+  analysis_runtime:
+    container_name: analysis_runtime
     image: data_analysis_base
     build: ./
     volumes:
       - ./results:/app/results
     command: python3 main.py
 
-  data_analysis_jupyter:
-    container_name: data_analysis_jupyter_${port}
+  jupyter_server:
+    container_name: jupyter_server_${port}
     image: data_analysis_base
     ports:
       - ${port}:8888
     volumes:
+      - ./notebook:/app
       - ./results:/app/results
       - ./config/jupyter_notebook_config.py:/root/.jupyter/jupyter_notebook_config.py
     command: jupyter notebook

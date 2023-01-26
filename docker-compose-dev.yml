@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-  data_analysis:
-    container_name: data_analysis
+  analysis_runtime:
+    container_name: analysis_runtime
     image: data_analysis_base
     volumes:
       - ./config:/app/config
