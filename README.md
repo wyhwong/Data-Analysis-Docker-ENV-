@@ -1,43 +1,33 @@
-# Docker Environment for Data Analysis
+# TraefikLab
 
-This repository aims to provide a docker environment for data analysis with Python/C/C++.
+This repository provides a Docker environment for running Jupyter Lab/Notebook with the Traefik reverse proxy. It supports multiple languages including Python, C, and C++ and can easily combined with extra services.
 
 ---
 
-## Description and Usage
+## Usage
 
-This repository standardized a basic docker environment of customized data analysis needs with Python/C/C++. The makefile commands are listed in the following:
+The Makefile commands are listed in the following:
 
 ```bash
-# To build image for containers
+# Build docker images
 make build
 
-# To start main
-make start
+# Create docker network
+make network
 
-# To develop
-make develop
+# Start containers (default: Jupyer Lab)
+make start
+# Start containers (Jupyer Notebook)
+JUPYTER_MODE=notebook make start
 ```
 
 ---
 
-## Data Visualization with Jupyter Notebook Server
-```bash
-# To run Jupyter notebook server
-make jupyter_up
-# To specify a port for the notebook
-make port=<port> jupyter_up
+## After deployment
 
-# To stop Jupyter notebook server
-make jupyter_down
-
-# To stop and remove all containers
-make clean
-```
+You can go to [localhost:1001](http://localhost:1001) for the traefik dashboard and [localhost:1002](https://localhost:1002) for the Jupyter Lab/Notebook.
 
 ---
 
 ## Authors
 [@wyhwong](https://github.com/wyhwong)
-
----

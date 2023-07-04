@@ -1,20 +1,77 @@
-version: '3.8'
-services:
-  analysis_runtime:
-    container_name: analysis_runtime
-    image: data_analysis_base
-    build: ./
-    volumes:
-      - ./results:/app/results
-    command: python3 main.py
+version: "3.8"
 
-  jupyter_server:
-    container_name: jupyter_server_${port}
-    image: data_analysis_base
+x-env:
+  # General
+  &env
+  - LOGLEVEL=${LOGLEVEL}
+
+services:
+  traefik:
+    container_name: traefik
+    hostname: traefik
+    image: traefik:2.5
+    networks:
+      - docker_network
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+    restart: always
+    environment: *env
     ports:
-      - ${port}:8888
+      - 80:80
+      - 443:443
+      - 1001:1001
+      - 1002:1002
     volumes:
-      - ./notebook:/app
-      - ./results:/app/results
-      - ./config/jupyter_notebook_config.py:/root/.jupyter/jupyter_notebook_config.py
-    command: jupyter notebook
+      - /var/run/docker.sock:/var/run/docker.sock
+    command:
+      #- --log.level=DEBUG
+      # Dashboard
+      - --api.insecure=true
+      - --api.dashboard=true
+      # Entrypoints
+      - --entryPoints.web.address=:80
+      - --entryPoints.websecure.address=:443
+      - --entryPoints.traefik.address=:1001
+      - --entryPoints.jupyter.address=:1002
+      - --entryPoints.web.http.redirections.entryPoint.to=websecure
+      # TLS
+      - --certificatesResolvers.tlsresolver.acme.storage=/acme.json
+      - --certificatesResolvers.tlsresolver.acme.tlsChallenge=true
+      - --providers.docker=true
+
+  jupyter:
+    container_name: jupyter
+    hostname: jupyter
+    image: local/jupyter
+    networks:
+      - docker_network
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+    restart: always
+    environment: *env
+    build:
+      context: ./
+      args:
+        USERNAME: ${USERNAME}
+        USER_ID: ${USER_ID}
+        GROUP_ID: ${GROUP_ID}
+    user: ${USERNAME}
+    volumes:
+      - ./jupyter:/jupyter
+      - ./utils:/jupyter/utils
+      - ./configs:/jupyter/configs:ro
+      - ./configs/notebook_config.py:/root/.jupyter/jupyter_notebook_config.py:ro
+      - ./configs/jupyterlab_config.py:/root/.jupyter/jupyter_jupyterlab_server_config.py:ro
+    working_dir: /jupyter
+    command: jupyter ${JUPYTER_MODE}
+
+networks:
+  docker_network:
+    name: ${DOCKER_NETWORK_NAME}
+    external: true

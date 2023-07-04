@@ -1,22 +1,22 @@
 export DOCKER_BUILDKIT=1
 
-port ?= 8888
+export LOGLEVEL?=20
+export HOST?=localhost
+export DOCKER_NETWORK_NAME?=docker_network
+export JUPYTER_MODE?=lab
+
+export USERNAME?=$(shell whoami)
+export USER_ID?=$(shell id -u)
+export GROUP_ID?=$(shell id -g)
+
+network:
+	docker network create ${DOCKER_NETWORK_NAME}
 
 build:
 	docker-compose build
 
-develop:
-	docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d data_analysis
-	docker exec -it data_analysis bash
-
 start:
-	docker-compose up data_analysis
-
-jupyter_up:
-	port=${port} docker-compose up -d data_analysis_jupyter
-
-jupyter_down:
-	docker-compose kill data_analysis_jupyter
+	docker-compose -f docker-compose.yml -f docker-compose.labels.yml up -d --no-build
 
 clean:
 	docker-compose down --remove-orphans
