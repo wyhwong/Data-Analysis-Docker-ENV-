@@ -39,5 +39,14 @@ You can go to [localhost:1001](http://localhost:1001) for the traefik dashboard 
 
 ---
 
+## Clean up
+
+```bash
+# Remove containers
+make clean
+```
+
+---
+
 ## Authors
 [@wyhwong](https://github.com/wyhwong)
