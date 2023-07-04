@@ -1,5 +1,6 @@
 FROM continuumio/miniconda3:latest AS base
-ENV TZ=Asia/Hong_Kong
+ARG TZ
+ENV TZ=${TZ}
 
 # Basic environment setup
 RUN apt-get update && apt-get install -y tzdata python3 python3-pip -y

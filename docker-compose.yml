@@ -45,7 +45,7 @@ services:
   jupyter:
     container_name: jupyter
     hostname: jupyter
-    image: local/jupyter
+    image: local/jupyter:${VERSION}
     networks:
       - docker_network
     logging:
@@ -61,6 +61,7 @@ services:
         USERNAME: ${USERNAME}
         USER_ID: ${USER_ID}
         GROUP_ID: ${GROUP_ID}
+        TZ: ${TZ}
     user: ${USERNAME}
     volumes:
       - ./jupyter:/jupyter

@@ -4,6 +4,16 @@ This repository provides a Docker environment for running Jupyter Lab/Notebook w
 
 ---
 
+## Prerequisites
+
+- Docker: [https://www.docker.com/](https://www.docker.com/)
+
+- Docker-compose: [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
+
+- GNU make: [https://www.gnu.org/software/make/manual/make.html](https://www.gnu.org/software/make/manual/make.html)
+
+---
+
 ## Usage
 
 The Makefile commands are listed in the following:

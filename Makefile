@@ -3,7 +3,10 @@ export DOCKER_BUILDKIT=1
 export LOGLEVEL?=20
 export HOST?=localhost
 export DOCKER_NETWORK_NAME?=docker_network
+
 export JUPYTER_MODE?=lab
+export VERSION?=dev
+export TZ?=Asia/Hong_Kong
 
 export USERNAME?=$(shell whoami)
 export USER_ID?=$(shell id -u)
