@@ -64,12 +64,12 @@ services:
         TZ: ${TZ}
     user: ${USERNAME}
     volumes:
-      - ./jupyter:/jupyter
-      - ./utils:/jupyter/utils
-      - ./configs:/jupyter/configs:ro
-      - ./configs/notebook_config.py:/root/.jupyter/jupyter_notebook_config.py:ro
-      - ./configs/jupyterlab_config.py:/root/.jupyter/jupyter_jupyterlab_server_config.py:ro
-    working_dir: /jupyter
+      - ./jupyter:/home/${USERNAME}/jupyter
+      - ./utils:/home/${USERNAME}/jupyter/utils
+      - ./configs:/home/${USERNAME}/jupyter/configs:ro
+      - ./configs/notebook_config.py:/home/${USERNAME}/.jupyter/jupyter_notebook_config.py:ro
+      - ./configs/jupyterlab_config.py:/home/${USERNAME}/.jupyter/jupyter_jupyterlab_server_config.py:ro
+    working_dir: /home/${USERNAME}/jupyter
     command: jupyter ${JUPYTER_MODE}
 
 networks:
