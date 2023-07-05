@@ -1,5 +1,5 @@
 FROM continuumio/miniconda3:latest AS base
-ARG TZ
+ARG TZ=Asia/Hong_Kong
 ENV TZ=${TZ}
 
 # Basic environment setup
@@ -10,11 +10,6 @@ RUN pip3 install jupyterthemes notebook jupyter-c-kernel jupyterlab
 RUN install_c_kernel
 RUN conda install xeus-cling -c conda-forge
 
-# Enable dark mode
-RUN jt -t monokai
-RUN mkdir -p /root/.jupyter/lab/user-settings/@jupyterlab/apputils-extension && \
-    echo '{ "theme":"JupyterLab Dark" }' > /root/.jupyter/lab/user-settings/@jupyterlab/apputils-extension/themes.jupyterlab-settings
-
 # Install packages for common utils
 RUN pip3 install pyyaml seaborn numpy pandas scipy matplotlib
 
@@ -23,5 +18,11 @@ ARG USERNAME
 ARG USER_ID
 ARG GROUP_ID
 
-RUN addgroup --gid ${GROUP_ID} ${USERNAME} && \
-    useradd -u ${USER_ID} -g ${GROUP_ID} ${USERNAME}
+RUN groupadd --gid ${GROUP_ID} ${USERNAME} && \
+    adduser --disabled-password --gecos '' --uid ${USER_ID} --gid ${GROUP_ID} ${USERNAME}
+
+# Enable dark mode
+USER ${USERNAME}
+RUN jt -t monokai
+RUN mkdir -p /home/${USERNAME}/.jupyter/lab/user-settings/@jupyterlab/apputils-extension && \
+    echo '{ "theme":"JupyterLab Dark" }' > /home/${USERNAME}/.jupyter/lab/user-settings/@jupyterlab/apputils-extension/themes.jupyterlab-settings
