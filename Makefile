@@ -5,7 +5,7 @@ export HOST?=localhost
 export DOCKER_NETWORK_NAME?=docker_network
 
 export JUPYTER_MODE?=lab
-export VERSION?=dev
+export VERSION?=1.0.0
 export TZ?=Asia/Hong_Kong
 
 export USERNAME?=$(shell whoami)

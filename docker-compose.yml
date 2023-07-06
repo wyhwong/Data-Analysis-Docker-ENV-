@@ -26,6 +26,7 @@ services:
       - 1002:1002
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik:/traefik
     command:
       #- --log.level=DEBUG
       # Dashboard
@@ -38,7 +39,7 @@ services:
       - --entryPoints.jupyter.address=:1002
       - --entryPoints.web.http.redirections.entryPoint.to=websecure
       # TLS
-      - --certificatesResolvers.tlsresolver.acme.storage=/acme.json
+      - --certificatesResolvers.tlsresolver.acme.storage=/traefik/acme.json
       - --certificatesResolvers.tlsresolver.acme.tlsChallenge=true
       - --providers.docker=true
 
@@ -66,11 +67,8 @@ services:
     volumes:
       - ./jupyter:/home/${USERNAME}/jupyter
       - ./utils:/home/${USERNAME}/jupyter/utils
-      - ./configs:/home/${USERNAME}/jupyter/configs:ro
-      - ./configs/notebook_config.py:/home/${USERNAME}/.jupyter/jupyter_notebook_config.py:ro
-      - ./configs/jupyterlab_config.py:/home/${USERNAME}/.jupyter/jupyter_jupyterlab_server_config.py:ro
     working_dir: /home/${USERNAME}/jupyter
-    command: jupyter ${JUPYTER_MODE}
+    command: jupyter ${JUPYTER_MODE} --ip 0.0.0.0 --NotebookApp.token='' --NotebookApp.password=''
 
 networks:
   docker_network:

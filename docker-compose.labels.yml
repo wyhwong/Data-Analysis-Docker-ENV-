@@ -10,7 +10,6 @@ services:
   jupyter:
     labels:
       - traefik.http.routers.jupyter.rule=Host(`${HOST}`)
-      - traefik.http.routers.api.entryPoints=jupyter
+      - traefik.http.routers.jupyter.entryPoints=jupyter
       - traefik.http.routers.jupyter.tls=true
-      - traefik.http.routers.jupyter.tls.certresolver=tlsresolver
       - traefik.http.services.jupyter.loadbalancer.server.port=8888

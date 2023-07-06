@@ -25,7 +25,7 @@ make build
 # Create docker network
 make network
 
-# Start containers (default: Jupyer Lab)
+# Start containers (default: Jupyer Lab & Notebook)
 make start
 # Start containers (Jupyer Notebook)
 JUPYTER_MODE=notebook make start
