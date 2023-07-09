@@ -2,13 +2,13 @@
 
 This repository provides a Docker environment for running Jupyter Lab/Notebook with the Traefik reverse proxy. It supports multiple languages including Python, C, C++, Golang, Java, Javascript, Julia, R, and Ruby and can easily combined with extra services.
 
----
+
 
 ## Kernels in Jupyter Lab
 
 ![plot](./images/jupyter_kernels.png)
 
----
+
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ This repository provides a Docker environment for running Jupyter Lab/Notebook w
 
 - GNU make: [https://www.gnu.org/software/make/manual/make.html](https://www.gnu.org/software/make/manual/make.html)
 
----
+
 
 ## Usage
 
@@ -37,13 +37,13 @@ make start
 JUPYTER_MODE=notebook make start
 ```
 
----
+
 
 ## After deployment
 
 You can go to [localhost:1001](http://localhost:1001) for the traefik dashboard and [localhost:1002](https://localhost:1002) for the Jupyter Lab/Notebook.
 
----
+
 
 ## Clean up
 
@@ -52,7 +52,7 @@ You can go to [localhost:1001](http://localhost:1001) for the traefik dashboard 
 make clean
 ```
 
----
+
 
 ## Authors
 [@wyhwong](https://github.com/wyhwong)
