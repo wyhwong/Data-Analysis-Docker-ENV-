@@ -1,6 +1,12 @@
 # TraefikLab
 
-This repository provides a Docker environment for running Jupyter Lab/Notebook with the Traefik reverse proxy. It supports multiple languages including Python, C, and C++ and can easily combined with extra services.
+This repository provides a Docker environment for running Jupyter Lab/Notebook with the Traefik reverse proxy. It supports multiple languages including Python, C++, C, R, Java, Javascript, and Golang and can easily combined with extra services.
+
+---
+
+## Kernels in Jupyter Lab
+
+![plot](./images/jupyter_kernels.png)
 
 ---
 
