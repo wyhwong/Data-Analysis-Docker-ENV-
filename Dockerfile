@@ -42,6 +42,20 @@ RUN go install github.com/gopherdata/gophernotes@v0.7.5 && \
     chmod +w ./kernel.json # in case copied kernel.json has no write permission && \
     sed "s|gophernotes|$(go env GOPATH)/bin/gophernotes|" < kernel.json.in > kernel.json
 
+# Jupyter kernal (Ruby)
+RUN apt-get install ruby-full -y
+RUN apt-get install libzmq3-dev -y && \
+    gem install iruby && \
+    iruby register --force && \
+    mv /root/.local/share/jupyter/kernels/ruby /usr/local/share/jupyter/kernels/ruby
+
+# # Jupyter kernal (Julia)
+RUN wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.2-linux-x86_64.tar.gz && \
+    tar -C /usr/local -zxf julia-1.9.2-linux-x86_64.tar.gz
+ENV PATH=$PATH:/usr/local/julia-1.9.2/bin
+RUN julia -e 'using Pkg; Pkg.add("IJulia")' && \
+    mv /root/.local/share/jupyter/kernels/julia-1.9 /usr/local/share/jupyter/kernels/julia-1.9
+
 # Create same user in host machine
 ARG USERNAME
 ARG USER_ID
