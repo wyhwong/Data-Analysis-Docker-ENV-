@@ -12,9 +12,11 @@ RUN pip3 install jupyterthemes notebook jupyterlab
 RUN conda config --set auto_update_conda False
 RUN conda install r-irkernel -c r --no-update-deps --freeze-installed -y
 
-# Jupyter kernal (C/C++)
+# Jupyter kernal (C)
 RUN pip3 install jupyter-c-kernel && \
     install_c_kernel --sys-prefix
+
+# Jupyter kernal (C++)
 RUN conda install xeus-cling -c conda-forge -y
 
 # Jupyter kernal (Java)
