@@ -65,7 +65,7 @@ services:
         TZ: ${TZ}
     volumes:
       - ./jupyter:/home/${USERNAME}/jupyter
-      - ./utils:/home/${USERNAME}/jupyter/utils
+      - ./pyutils:/home/${USERNAME}/jupyter/pyutils
     command: jupyter ${JUPYTER_MODE} --ip 0.0.0.0 --NotebookApp.token='' --NotebookApp.password=''
 
 networks:
