@@ -4,6 +4,12 @@ This repository provides a Docker environment for running Jupyter Lab/Notebook w
 
 ---
 
+## Kernels in Jupyter Lab
+
+![plot](./images/jupyter_kernels.png)
+
+---
+
 ## Prerequisites
 
 - Docker: [https://www.docker.com/](https://www.docker.com/)

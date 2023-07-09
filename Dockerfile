@@ -14,7 +14,7 @@ RUN conda install r-irkernel -c r --no-update-deps --freeze-installed -y
 
 # Jupyter kernal (C/C++)
 RUN pip3 install jupyter-c-kernel && \
-    install_c_kernel
+    install_c_kernel --sys-prefix
 RUN conda install xeus-cling -c conda-forge -y
 
 # Jupyter kernal (Java)
@@ -36,8 +36,8 @@ RUN rm -rf /usr/local/go && \
     tar -C /usr/local -xzf go1.20.5.linux-amd64.tar.gz
 ENV PATH=$PATH:/usr/local/go/bin
 RUN go install github.com/gopherdata/gophernotes@v0.7.5 && \
-    mkdir -p ~/.local/share/jupyter/kernels/gophernotes && \
-    cd ~/.local/share/jupyter/kernels/gophernotes && \
+    mkdir -p /usr/local/share/jupyter/kernels/gophernotes && \
+    cd /usr/local/share/jupyter/kernels/gophernotes && \
     cp "$(go env GOPATH)"/pkg/mod/github.com/gopherdata/gophernotes@v0.7.5/kernel/*  "." && \
     chmod +w ./kernel.json # in case copied kernel.json has no write permission && \
     sed "s|gophernotes|$(go env GOPATH)/bin/gophernotes|" < kernel.json.in > kernel.json
