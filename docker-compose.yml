@@ -36,17 +36,17 @@ services:
       - --entryPoints.web.address=:80
       - --entryPoints.websecure.address=:443
       - --entryPoints.traefik.address=:1001
-      - --entryPoints.jupyter.address=:1002
+      - --entryPoints.traefiklab.address=:1002
       - --entryPoints.web.http.redirections.entryPoint.to=websecure
       # TLS
       - --certificatesResolvers.tlsresolver.acme.storage=/traefik/acme.json
       - --certificatesResolvers.tlsresolver.acme.tlsChallenge=true
       - --providers.docker=true
 
-  jupyter:
-    container_name: jupyter
-    hostname: jupyter
-    image: local/jupyter:${VERSION}
+  traefiklab:
+    container_name: traefiklab
+    hostname: traefiklab
+    image: traefiklab:${VERSION}
     networks:
       - docker_network
     logging:
@@ -64,9 +64,9 @@ services:
         GROUP_ID: ${GROUP_ID}
         TZ: ${TZ}
     volumes:
-      - ./jupyter:/home/${USERNAME}/jupyter
-      - ./pyutils:/home/${USERNAME}/jupyter/pyutils
-    command: jupyter ${JUPYTER_MODE} --ip 0.0.0.0 --NotebookApp.token='' --NotebookApp.password=''
+      - ./traefiklab:/home/${USERNAME}/traefiklab
+      - ./pyutils:/home/${USERNAME}/traefiklab/pyutils
+    command: jupyter lab --ip 0.0.0.0 --NotebookApp.token='' --NotebookApp.password=''
 
 networks:
   docker_network:

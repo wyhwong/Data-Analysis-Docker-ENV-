@@ -33,15 +33,13 @@ make network
 
 # Start containers (default: Jupyer Lab & Notebook)
 make start
-# Start containers (Jupyer Notebook)
-JUPYTER_MODE=notebook make start
 ```
 
 
 
 ## After deployment
 
-You can go to [localhost:1001](http://localhost:1001) for the traefik dashboard and [localhost:1002](https://localhost:1002) for the Jupyter Lab/Notebook.
+You can go to [localhost:1001](http://localhost:1001) for the traefik dashboard and [localhost:1002/lab](https://localhost:1002/lab) for the Jupyter Lab UI or [localhost:1002/tree](https://localhost:1002/tree) for the Jupyter Notebook UI.
 
 
 

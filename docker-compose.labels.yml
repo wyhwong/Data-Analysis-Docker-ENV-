@@ -7,9 +7,9 @@ services:
       - traefik.http.routers.api.entryPoints=traefik
       - traefik.http.routers.api.service=api@internal
 
-  jupyter:
+  traefiklab:
     labels:
-      - traefik.http.routers.jupyter.rule=Host(`${HOST}`)
-      - traefik.http.routers.jupyter.entryPoints=jupyter
-      - traefik.http.routers.jupyter.tls=true
-      - traefik.http.services.jupyter.loadbalancer.server.port=8888
+      - traefik.http.routers.traefiklab.rule=Host(`${HOST}`)
+      - traefik.http.routers.traefiklab.entryPoints=traefiklab
+      - traefik.http.routers.traefiklab.tls=true
+      - traefik.http.services.traefiklab.loadbalancer.server.port=8888

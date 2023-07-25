@@ -6,7 +6,7 @@ ENV TZ=${TZ}
 RUN apt-get update && apt-get install tzdata python3 python3-pip -y
 
 # Jupyter lab setup
-RUN pip3 install jupyterthemes notebook jupyterlab
+RUN pip3 install notebook jupyterlab
 
 # Jupyter kernal (R)
 RUN conda config --set auto_update_conda False
@@ -69,6 +69,5 @@ USER ${USERNAME}
 WORKDIR /home/${USERNAME}/jupyter
 
 # Enable dark mode
-RUN jt -t monokai && \
-    mkdir -p /home/${USERNAME}/.jupyter/lab/user-settings/@jupyterlab/apputils-extension && \
+RUN mkdir -p /home/${USERNAME}/.jupyter/lab/user-settings/@jupyterlab/apputils-extension && \
     echo '{ "theme":"JupyterLab Dark" }' > /home/${USERNAME}/.jupyter/lab/user-settings/@jupyterlab/apputils-extension/themes.jupyterlab-settings

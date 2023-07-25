@@ -2,9 +2,8 @@ export DOCKER_BUILDKIT=1
 
 export LOGLEVEL?=20
 export HOST?=localhost
-export DOCKER_NETWORK_NAME?=docker_network
+export DOCKER_NETWORK_NAME?=traefiklab
 
-export JUPYTER_MODE?=lab
 export VERSION?=1.0.0
 export TZ?=Asia/Hong_Kong
 
